@@ -1,0 +1,9 @@
+streamlit
+psycopg2-binary
+python-dotenv
+langchain
+google-generativeai
+faiss-cpu
+pytesseract
+Pillow
+sentence-transformers
