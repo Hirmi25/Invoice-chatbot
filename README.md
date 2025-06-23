@@ -3,18 +3,18 @@ The Retail Invoice Chatbot is an advanced, AI-powered assistant designed to extr
 
 # 🔍 What It Does
 
-📸 Uploads & Extracts: Accepts invoice images, uses OCR (Tesseract/OpenCV) to extract text.
-🧠 Parses with LLM: Sends OCR text to Gemini LLM to extract structured fields like:
-Invoice Number, Date, Customer Name, Supplier, Items, Total Amount
-🧮 Stores Smartly: Saves parsed invoices and embeddings to a PostgreSQL database and FAISS vector store.
+📸 Uploads & Extracts: Accepts invoice images, uses OCR (Tesseract/OpenCV) to extract text.<br>
+🧠 Parses with LLM: Sends OCR text to Gemini LLM to extract structured fields like:<br>
+Invoice Number, Date, Customer Name, Supplier, Items, Total Amount<br>
+🧮 Stores Smartly: Saves parsed invoices and embeddings to a PostgreSQL database and FAISS vector store.<br>
 
 # 💬 Natural Language Chat: Lets users ask flexible questions like:
 
-“What is the total of the latest invoice?”
-“Show me the 5th invoice uploaded.”
-“Summarize invoice number AMD-2024-559.”
-“Who bought from Amazon?”
-“What did customer ID 12 purchase?”
+“What is the total of the latest invoice?”<br>
+“Show me the 5th invoice uploaded.”<br>
+“Summarize invoice number AMD-2024-559.”<br>
+“Who bought from Amazon?”<br>
+“What did customer ID 12 purchase?”<br>
 
 # ⚡ Fully LLM-driven: 
 No manual parsing or conditional logic; all intelligent behaviors come from prompt-engineered LLMs.
@@ -69,45 +69,45 @@ Maintains conversational history to support follow-up queries like “What about
 
 # 🗂 Database Design
 
-# Table: data_of_invoices
+### Table: data_of_invoices
 
-Column	Type	Description
+<b>Column	Type	Description</b>
 
-customer_id	SERIAL	Primary key,
-invoice_number	TEXT	Unique invoice identifier,
-customer	TEXT	Customer name,
-supplier	TEXT	Supplier name,
-invoice_date	DATE	Invoice issue date,
-items	TEXT	All items (concatenated string),
-total_amount	NUMERIC(12,2)	Invoice total,
-vector_embedding	FLOAT8[]	Embedding vector (for FAISS search),
-uploaded_at	TIMESTAMP	Time of upload
+customer_id	SERIAL	Primary key,<br>
+invoice_number	TEXT	Unique invoice identifier,<br>
+customer	TEXT	Customer name,<br>
+supplier	TEXT	Supplier name,<br>
+invoice_date	DATE	Invoice issue date,<br>
+items	TEXT	All items (concatenated string),<br>
+total_amount	NUMERIC(12,2)	Invoice total,<br>
+vector_embedding	FLOAT8[]	Embedding vector (for FAISS search),<br>
+uploaded_at	TIMESTAMP	Time of upload<br>
 
-# Table: data_invoices_images
+### Table: data_invoices_images
 
-Column	Type	Description
+<b>Column	Type	Description</b>
 
-image_id	SERIAL	Primary key,
-customer_id	INT	Foreign key to data_of_invoices,
-image_path	TEXT	File path or URI,
-uploaded_at	TIMESTAMP	Time of image upload
+image_id	SERIAL	Primary key,<br>
+customer_id	INT	Foreign key to data_of_invoices,<br>
+image_path	TEXT	File path or URI,<br>
+uploaded_at	TIMESTAMP	Time of image upload<br>
 
 
 # 🛠 Tech Stack
 
-Frontend: Streamlit
-OCR: Tesseract, OpenCV
-LLM: Google Gemini (via google.generativeai)
-Vector DB: FAISS + sentence-transformers (MiniLM-L6-v2)
-Database: PostgreSQL (via psycopg2)
-LangChain: RetrievalQA, ConversationalRetrievalChain, memory, prompt templates
+Frontend: Streamlit<br>
+OCR: Tesseract, OpenCV<br>
+LLM: Google Gemini (via google.generativeai)<br>
+Vector DB: FAISS + sentence-transformers (MiniLM-L6-v2)<br>
+Database: PostgreSQL (via psycopg2)<br>
+LangChain: RetrievalQA, ConversationalRetrievalChain, memory, prompt templates<br>
 
 ## 📁 Project Structure
 
--app.py
--db/db_handler.py
--img2text/img2text.py
--llm/query_llm.py
+-app.py<br>
+-db/db_handler.py<br>
+-img2text/img2text.py<br>
+-llm/query_llm.py<br>
 
 # 🚀 Getting Started
 
@@ -122,18 +122,18 @@ LangChain: RetrievalQA, ConversationalRetrievalChain, memory, prompt templates
 
 # 📌 Example Questions You Can Ask
 
-What is the latest invoice?
-Summarize invoice number AMD2-6095263
-Show the 3rd invoice
-What did Jacob John buy?
-Summarize invoice ID 12
-Which customer bought from Flipkart?
-Invoices from March 2025?
-What’s the average total?
-Customer ID 3 details
+What is the latest invoice?<br>
+Summarize invoice number AMD2-6095263<br>
+Show the 3rd invoice<br>
+What did Jacob John buy?<br>
+Summarize invoice ID 12<br>
+Which customer bought from Flipkart?<br>
+Invoices from March 2025?<br>
+What’s the average total?<br>
+Customer ID 3 details<br>
 
 # 📣 Notes
 
-Handles deletion/missing IDs cleanly (e.g., ID 10 not found).
-Distinguishes between invoice ID, invoice number, and upload position.
-Customer IDs are now the new primary key and used in image relationships.
+Handles deletion/missing IDs cleanly (e.g., ID 10 not found).<br>
+Distinguishes between invoice ID, invoice number, and upload position.<br>
+Customer IDs are now the new primary key and used in image relationships.<br>
