@@ -73,23 +73,23 @@ Maintains conversational history to support follow-up queries like “What about
 
 Column	Type	Description
 
-customer_id	SERIAL	Primary key
-invoice_number	TEXT	Unique invoice identifier
-customer	TEXT	Customer name
-supplier	TEXT	Supplier name
-invoice_date	DATE	Invoice issue date
-items	TEXT	All items (concatenated string)
-total_amount	NUMERIC(12,2)	Invoice total
-vector_embedding	FLOAT8[]	Embedding vector (for FAISS search)
+customer_id	SERIAL	Primary key,
+invoice_number	TEXT	Unique invoice identifier,
+customer	TEXT	Customer name,
+supplier	TEXT	Supplier name,
+invoice_date	DATE	Invoice issue date,
+items	TEXT	All items (concatenated string),
+total_amount	NUMERIC(12,2)	Invoice total,
+vector_embedding	FLOAT8[]	Embedding vector (for FAISS search),
 uploaded_at	TIMESTAMP	Time of upload
 
 # Table: data_invoices_images
 
 Column	Type	Description
 
-image_id	SERIAL	Primary key
-customer_id	INT	Foreign key to data_of_invoices
-image_path	TEXT	File path or URI
+image_id	SERIAL	Primary key,
+customer_id	INT	Foreign key to data_of_invoices,
+image_path	TEXT	File path or URI,
 uploaded_at	TIMESTAMP	Time of image upload
 
 
@@ -101,6 +101,13 @@ LLM: Google Gemini (via google.generativeai)
 Vector DB: FAISS + sentence-transformers (MiniLM-L6-v2)
 Database: PostgreSQL (via psycopg2)
 LangChain: RetrievalQA, ConversationalRetrievalChain, memory, prompt templates
+
+## 📁 Project Structure
+
+-app.py
+-db/db_handler.py
+-img2text/img2text.py
+-llm/query_llm.py
 
 # 🚀 Getting Started
 
